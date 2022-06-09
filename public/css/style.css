@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding: 10px 0 10px 5px;
+    background-color: aquamarine;
+    color: black;
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+}
+
+.menu-item {
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+.login {
+    margin-top: -35px;
+    padding-right: 200px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.basket_count {
+    margin: 0;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    position: absolute;
+    left: 470px;
+    top: 47px;
+    border: 2px solid red;
+    border-radius: 50%;
+}
+
+.order {
+    border-radius: 5%;
+    border: 1px solid red;
+}
+
+.product {
+    position: relative;
+}
+
+.like {
+    position: absolute;
+    left: 12%;
+    top: 10%;
+}
+
+
+
