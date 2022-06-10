@@ -8,7 +8,7 @@
             <p><?= $item['product_name'] ?></p>
             <img src="../img/<?= $item['img'] ?>" alt="<?= $item['product_name'] ?>" width="150">
             <p><?= $item['price'] ?> руб/сутки</p>
-            <a href="/basket/del/?id=<?= $item['basket_id'] ?>">Удалить</a>
+            <a class="button" href="/basket/del/?id=<?= $item['basket_id'] ?>">Удалить</a>
         </div>
         <br>
     <?php endforeach; ?>
@@ -22,6 +22,7 @@
     </form>
 
     <?= $message ?>
+
 <?php else: ?>
     <?= "Корзина пустая" ?>
 <?php endif; ?>

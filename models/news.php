@@ -8,3 +8,5 @@ function getOneNews($id)
 {
     return getOneResult("SELECT id, name, description FROM news WHERE id = {$id}");
 }
+
+

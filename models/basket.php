@@ -27,24 +27,23 @@ function addItemInBasket($id_session, $id, $action)
     }
 }
 
-function delItemBasket($id, $action)
+function delItemBasket($action)
 {
     if ($action == "del") {
-        var_dump($id);
+        $id = (int)$_GET['id'];
         executeSql("DELETE FROM basket WHERE id = '{$id}'");
         header("location: " . $_SERVER['HTTP_REFERER']);
         die();
     }
 }
 
-function order($id_session, $action, $messages)
+function order($id_session, $action)
 {
     if ($action == "order") {
         $name = $_POST['name'];
         $phone = $_POST['phone'];
         executeSql("INSERT INTO orders( `name`, `phone`, `id_session`) VALUES ('{$name}','{$phone}','{$id_session}')");
         header("location: /basket/?status=" . "send");
-
         die();
     }
 }

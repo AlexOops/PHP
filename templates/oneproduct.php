@@ -1,14 +1,14 @@
 <div class="product">
     <h3 style="padding-bottom: 10px"><?= $product['product_name'] ?></h3>
     <img src="/img/<?= $product['img'] ?>" alt="<?= $product['product_name'] ?>" width="150px" height="150px">
-    <p style="padding-top: 10px"><?= $product['description'] ?></p>
-    <p style="padding-top: 10px"><b><?= $product['price'] ?> рублей/сутки </b></p>
+    <p style="padding-top: 10px;"><?= $product['description'] ?></p>
+    <p style="padding-top: 10px; margin-bottom: 5px"><b><?= $product['price'] ?> рублей/сутки </b></p>
 
     <div class="like"><p id="<?= $product['id'] ?>"> like: <?= $product['like'] ?></p>
-        <button class="btn-like" data-id="<?= $product['id'] ?>">like</button>
+        <button class="button" data-id="<?= $product['id'] ?>">like</button>
     </div>
 
-    <a href="/oneproduct/buy/?id=<?= $product['id'] ?>">В корзину</a>
+    <a class="button" href="/oneproduct/buy/?id=<?= $product['id'] ?>">В корзину</a>
 </div>
 
 <h2><?= $title ?></h2>

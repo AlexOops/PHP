@@ -21,7 +21,7 @@ function is_auth()
 
 function get_user() // get username for variable
 {
-    return $_SESSION['login'];
+    return $_SESSION['login'] ?? "";
 }
 
 function is_admin() // rights only for admin

@@ -9,7 +9,7 @@ function prepareVariables($page, $action = "", $messages = [])
             break;
 
         case('login'):
-            $login = $_POST['login'];
+            $login = $_POST['login'] ;
             $pass = $_POST['pass'];
             if (auth($login, $pass)) {
                 if (isset($_POST['save'])) { // if checkbox checked then create uniqid
@@ -38,7 +38,7 @@ function prepareVariables($page, $action = "", $messages = [])
             $params['product'] = getOneProduct();
 
             $params['title'] = "Отзывы";
-            $params['message'] = $messages[$_GET['status']] ?? "";
+            $params['message'] = $messages[$_GET['status'] ?? ""] ?? "";
             doFeedBackAction($params, $action);
             $params['feedbacks'] = getAllFeedbacks();
             $id_session = session_id();
@@ -49,7 +49,7 @@ function prepareVariables($page, $action = "", $messages = [])
 
         case('gallery'):
             $params['title'] = "Галерея";
-            $params['message'] = $messages[$_GET['status']] ?? "";
+            $params['message'] = $messages[$_GET['status'] ?? ""] ?? "";
             $params['pictures'] = getPictures();
 
             if (!empty($_FILES)) {
@@ -59,6 +59,7 @@ function prepareVariables($page, $action = "", $messages = [])
 
         case('oneitem'):
             $id = $_GET['id'];
+            $params['title'] = "Картинка " . $id;
             $params['views'] = isVisit($id);
             $params['picture'] = getOnePicture($id);
             break;
@@ -75,6 +76,7 @@ function prepareVariables($page, $action = "", $messages = [])
 
         case('onenews'):
             $id = $_GET['id'];
+            $params['title'] = "Новость - " . $id;
             $params['news'] = getOneNews($id);
             break;
 
@@ -85,13 +87,16 @@ function prepareVariables($page, $action = "", $messages = [])
 
         case('basket'):
             $params['title'] = "Корзина";
-            $id = (int)$_GET['id'];
             $id_session = session_id();
             $params['basket'] = getBasket($id_session);
             $params['sum'] = getBasketSum($id_session);
-            delItemBasket($id, $action);
-            order($id_session, $action, $messages);
-            $params['message'] = $messages[$_GET['status']] ?? "";
+            delItemBasket($action);
+            order($id_session, $action);
+            $params['message'] = $messages[$_GET['status'] ?? ""] ?? "";
+            break;
+
+        case('admin'):
+            $params['title'] = "Админка";
             break;
     }
     return $params;

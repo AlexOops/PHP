@@ -1,7 +1,5 @@
 <?php
 session_start();
-ini_set('display_errors','ON');
-error_reporting('E_ALL');
 
 include $_SERVER['DOCUMENT_ROOT'] . "/../config/config.php";
 
@@ -13,7 +11,7 @@ $action = $url_array[2]?? "";
 if ($url_array[1] == '') {
     $page = "index";
 } else {
-    $page = $url_array[1];
+    $page = $url_array[1] ;
 }
 
 $params = prepareVariables($page, $action, $messages);
