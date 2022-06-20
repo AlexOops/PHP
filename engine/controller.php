@@ -4,12 +4,12 @@ function prepareVariables($page, $action = "", $messages = [])
     $params['auth'] = is_auth();
     $params['login'] = get_user();
     switch ($page) {
-        case('index'):
+        case 'index':
             $params['title'] = "Лодки напрокат";
             break;
 
-        case('login'):
-            $login = $_POST['login'] ;
+        case 'login':
+            $login = $_POST['login'];
             $pass = $_POST['pass'];
             if (auth($login, $pass)) {
                 if (isset($_POST['save'])) { // if checkbox checked then create uniqid
@@ -22,19 +22,19 @@ function prepareVariables($page, $action = "", $messages = [])
             }
             break;
 
-        case('logout'):
+        case 'logout':
             setcookie("hash", "", time() - 1, "/");
             session_regenerate_id();
             session_destroy();
             header("Location: " . $_SERVER['HTTP_REFERER']);
             break;
 
-        case('catalog'):
+        case 'catalog':
             $params['title'] = "Каталог";
             $params['products'] = getCatalog();
             break;
 
-        case('oneproduct'):
+        case 'oneproduct':
             $params['product'] = getOneProduct();
 
             $params['title'] = "Отзывы";
@@ -47,7 +47,7 @@ function prepareVariables($page, $action = "", $messages = [])
             addLike($action);
             break;
 
-        case('gallery'):
+        case 'gallery':
             $params['title'] = "Галерея";
             $params['message'] = $messages[$_GET['status'] ?? ""] ?? "";
             $params['pictures'] = getPictures();
@@ -57,35 +57,35 @@ function prepareVariables($page, $action = "", $messages = [])
             }
             break;
 
-        case('oneitem'):
-            $id = $_GET['id'];
+        case 'oneitem':
+            $id = (int)$_GET['id'];
             $params['title'] = "Картинка " . $id;
-            $params['views'] = isVisit($id);
+            isVisit($id);
             $params['picture'] = getOnePicture($id);
             break;
 
-        case('documents'):
+        case 'documents':
             $params['title'] = "Файлы";
             $params['files'] = getFiles();
             break;
 
-        case('news'):
+        case 'news':
             $params['title'] = "Новости";
             $params['news'] = getNews();
             break;
 
-        case('onenews'):
-            $id = $_GET['id'];
+        case 'onenews':
+            $id = (int)$_GET['id'];
             $params['title'] = "Новость - " . $id;
             $params['news'] = getOneNews($id);
             break;
 
-        case('about'):
+        case 'about':
             $params['title'] = "О нас";
             $params['phone'] = 79999999;
             break;
 
-        case('basket'):
+        case 'basket':
             $params['title'] = "Корзина";
             $id_session = session_id();
             $params['basket'] = getBasket($id_session);
@@ -95,8 +95,17 @@ function prepareVariables($page, $action = "", $messages = [])
             $params['message'] = $messages[$_GET['status'] ?? ""] ?? "";
             break;
 
-        case('admin'):
+        case 'admin':
             $params['title'] = "Админка";
+            $params['orders'] = getOrders();
+            delOrder($action);
+            break;
+
+        case 'order':
+            $params['title'] = "Заказ № ";
+            $params['order'] = getOneOrder();
+            $params['items'] = getDetailsOrder();
+            $params['sum'] = getTotalSum();
             break;
     }
     return $params;

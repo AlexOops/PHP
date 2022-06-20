@@ -12,7 +12,7 @@ function getOnePicture($id)
 
 function isVisit($id)
 {
-    executeSql("UPDATE gallery SET views = views + 1 WHERE id = {$id}");
+     executeSql("UPDATE gallery SET views = views + 1 WHERE id = {$id}");
 }
 
 function uploadImage($filename)

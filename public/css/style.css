@@ -12,7 +12,6 @@ body {
 }
 
 
-
 .menu {
     list-style-type: none;
     display: flex;
@@ -22,7 +21,7 @@ body {
     padding-right: 10px;
 }
 
-.menu-item:last-child{
+.menu-item:last-child {
     padding-left: 25px;
 }
 
@@ -44,11 +43,6 @@ body {
     border-radius: 50%;
 }
 
-.order {
-    border-radius: 5%;
-    border: 1px solid red;
-}
-
 .product {
     position: relative;
 }
@@ -64,4 +58,23 @@ body {
     color: blue;
 }
 
+.order {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+
+.order__phone {
+    padding: 0px 10px;
+}
+
+.order__del {
+    padding-left: 10px;
+}
+
+.order-zero {
+    padding-top: 10px;
+    font-weight: bold;
+}
 

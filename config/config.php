@@ -16,6 +16,7 @@ include ROOT . "/models/news.php";
 include ROOT . "/models/gallery.php";
 include ROOT . "/models/feedbacks.php";
 include ROOT . "/models/basket.php";
+include ROOT . "/models/orders.php";
 
 //include ROOT . "/config/setup.php";
 

@@ -5,7 +5,7 @@
     <p style="padding-top: 10px; margin-bottom: 5px"><b><?= $product['price'] ?> рублей/сутки </b></p>
 
     <div class="like"><p id="<?= $product['id'] ?>"> like: <?= $product['like'] ?></p>
-        <button class="button" data-id="<?= $product['id'] ?>">like</button>
+        <button class="button btn-like" data-id="<?= $product['id'] ?>">like</button>
     </div>
 
     <a class="button" href="/oneproduct/buy/?id=<?= $product['id'] ?>">В корзину</a>
@@ -27,20 +27,20 @@
 <?php endforeach; ?>
 
 <script>
-
     let buttons = document.querySelectorAll('.btn-like');
     buttons.forEach((elem) => {
         elem.addEventListener('click', () => {
             let id = elem.getAttribute('data-id');
+            console.log(id);
             (
                 async () => {
                     const response = await fetch("/oneproduct/addlike/?id=" + id);
-                    console.log(response);
                     const answer = await response.json();
                     document.getElementById(id).innerText = answer.like;
                 }
-            )();
+            )().catch(e =>
+                console.log("Ошибка получения данных! " + e)
+            );
         })
     })
-
 </script>
